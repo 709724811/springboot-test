@@ -13,10 +13,25 @@ import java.util.List;
  */
 public interface IUserService {
 
+    /**
+     * 模糊查询用户信息
+     * @param name 用户姓名
+     * @return
+     */
     ModelResult<List<User>> findUserByUsernameLike(String name);
 
+    /**
+     * 根据用户id查询用户信息
+     * @param id 用户id
+     * @return
+     */
     ModelResult<User> getUserById(Integer id);
 
+    /**
+     * 保存用户信息
+     * @param user 用户信息
+     * @return
+     */
     ModelResult<Integer> saveUser(User user);
 
 }

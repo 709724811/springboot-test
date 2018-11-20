@@ -20,16 +20,26 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-    @Query("from User where name = :name")
+    /**
+     * 模糊查询
+     * @param name 姓名
+     * @return
+     */
+    @Query(value="from User where name like CONCAT('%',:name,'%')")
     List<User> findUserByUsernameLike(@Param("name") String name);
 
+    /**
+     * 根据id查询用户
+     * @param id
+     * @return
+     */
     @Query("from User where id = :id")
     User getUserById(@Param("id") Integer id);
 
     /**
-     *
+     * 保存用户信息
      * @param user 用户
-     * @return
+     * @return 返回用户信息
      */
     @Modifying
     @SQLInsert(sql="insert into t_user (name,age,number) values (?1, ?2, ?3)")

@@ -5,6 +5,7 @@ import com.hibernate.test.model.entity.User;
 import com.hibernate.test.service.IUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,20 +31,20 @@ public class UserController {
 
     @ApiOperation(value = "根据姓名查询用户")
     @RequestMapping(value = "/findUserByUsernameLike", method = RequestMethod.GET)
-    public ModelResult<List<User>> findUserByUsernameLike(@RequestParam(value = "name") String name) {
+    public ModelResult<List<User>> findUserByUsernameLike(@ApiParam("用户姓名") @RequestParam(value = "name") String name) {
         logger.info("findUserByUsernameLike|name={}", name);
         return iUserService.findUserByUsernameLike(name);
     }
 
     @ApiOperation(value = "根据id查询用户")
     @RequestMapping(value = "/getUserById", method = RequestMethod.GET)
-    public ModelResult<User> getUserById(@RequestParam(value = "id") Integer id) {
+    public ModelResult<User> getUserById(@ApiParam("用户id")@RequestParam(value = "id") Integer id) {
         return iUserService.getUserById(id);
     }
 
     @ApiOperation(value = "保存用户")
     @RequestMapping(value = "/saveUser", method = RequestMethod.PUT)
-    public ModelResult saveUser(@RequestBody User user) {
+    public ModelResult saveUser(@ApiParam("用户信息")@RequestBody User user) {
         logger.info("addUser|user={}", user);
         return iUserService.saveUser(user);
     }
