@@ -1,5 +1,6 @@
 package com.hibernate.test.service;
 
+import com.hibernate.test.common.ListResult;
 import com.hibernate.test.common.ModelResult;
 import com.hibernate.test.model.entity.User;
 
@@ -18,7 +19,7 @@ public interface IUserService {
      * @param name 用户姓名
      * @return
      */
-    ModelResult<List<User>> findUserByUsernameLike(String name);
+    ListResult<User> findUserByUsernameLike(String name);
 
     /**
      * 根据用户id查询用户信息

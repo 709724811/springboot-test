@@ -1,5 +1,6 @@
 package com.hibernate.test.controller;
 
+import com.hibernate.test.common.ListResult;
 import com.hibernate.test.common.ModelResult;
 import com.hibernate.test.model.entity.User;
 import com.hibernate.test.service.IUserService;
@@ -31,7 +32,7 @@ public class UserController {
 
     @ApiOperation(value = "根据姓名查询用户")
     @RequestMapping(value = "/findUserByUsernameLike", method = RequestMethod.GET)
-    public ModelResult<List<User>> findUserByUsernameLike(@ApiParam("用户姓名") @RequestParam(value = "name") String name) {
+    public ListResult<User> findUserByUsernameLike(@ApiParam("用户姓名") @RequestParam(value = "name") String name) {
         logger.info("findUserByUsernameLike|name={}", name);
         return iUserService.findUserByUsernameLike(name);
     }
